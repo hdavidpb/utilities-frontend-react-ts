@@ -1,4 +1,4 @@
-import type { IFormattedUtility } from "../interfaces/utilities.interface"
+import type { IFormattedUtility, IGasesUtility } from "../interfaces/utilities.interface"
 
 export const aireUtilityAdapter = (data: string[][]):IFormattedUtility[] => {
 
@@ -25,6 +25,22 @@ export const tripleAUtilityAdapter = (data: string[][]):IFormattedUtility[] => {
     }))
 
     return formattedData
+
+}
+
+export const gasesDelCaribeAdapter = (data: IGasesUtility):IFormattedUtility[] => {
+
+    const formattedData:IFormattedUtility[] = [
+        {
+            amount: data.total,
+            contract: data.contract,
+            date: data.date,
+            status: data.status.toLowerCase() === "pagado" ? "paid" : "pending"
+        }] 
+    
+    
+    return formattedData
+
 
 }
 

@@ -5,10 +5,12 @@ import type { IFormattedUtility } from "../interfaces/utilities.interface";
 
 export interface IUtilitiesContext {
   isPending: boolean;
-  utilities:{
-    aire: IFormattedUtility[] ;
-    tripleA: IFormattedUtility[] ;
-  };
+  airePaid:IFormattedUtility[];
+  airePending:IFormattedUtility[];
+  gasesPaid:IFormattedUtility[];
+  gasesPending:IFormattedUtility[];
+  paidTripleA:IFormattedUtility[];
+  pendingTripleA:IFormattedUtility[];
   hasData: boolean;
   handleGetUtilities: () => void;
   }
@@ -19,10 +21,10 @@ export const UtilitiesContext = createContext({} as IUtilitiesContext);
 
 const UtilitiesContextProvider = ({children}:PropsWithChildren) => {
 
-  const {utilities,isPending,handleGetUtilities,hasData} = useGetUtilities()
+  const {isPending,handleGetUtilities,hasData,airePaid,airePending,gasesPaid,gasesPending,paidTripleA,pendingTripleA} = useGetUtilities()
 
   return (
-    <UtilitiesContext value={{isPending,hasData,utilities,handleGetUtilities}}>
+    <UtilitiesContext value={{isPending,hasData,airePaid,airePending,gasesPaid,gasesPending,paidTripleA,pendingTripleA,handleGetUtilities}}>
         {children}
     </UtilitiesContext>
   )
